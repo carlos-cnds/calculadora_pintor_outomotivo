@@ -1,6 +1,7 @@
 import 'package:calculadora_pintor_automotivo/models/product.dart';
 import 'package:calculadora_pintor_automotivo/modules/formula/components/seletor_diluicao.dart';
 import 'package:calculadora_pintor_automotivo/modules/formula/formula_controller.dart';
+import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:calculadora_pintor_automotivo/shared/local_repository/favorires_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,43 +16,44 @@ class FormulaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     FormulaController controller =
         Get.put(FormulaController(product: product, brand: brand));
-    Color blackAccent = const Color(0xff5c5c5c);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Calculadora Pintor Automotivo"),
+        title: Text(
+          controller.productsList[0]['marca'],
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         centerTitle: true,
+        actions: [
+          CircleAvatar(
+            backgroundColor: const Color(0xffE8E8E8),
+            radius: 20,
+            child: CircleAvatar(
+              radius: 19,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage(controller.brandImgUrl),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: CircleAvatar(
-                    backgroundColor: const Color(0xffE8E8E8),
-                    radius: 40,
-                    child: CircleAvatar(
-                      radius: 39,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage(controller.brandImgUrl),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  controller.productsList[0]['marca'],
+                const Text(
+                  "Produto:",
                   style: TextStyle(
-                    color: blackAccent,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 5,
                 ),
                 Obx(() {
                   return SizedBox(
@@ -61,16 +63,29 @@ class FormulaScreen extends StatelessWidget {
                         Expanded(
                           child: InputDecorator(
                             decoration: const InputDecoration(
+                              fillColor: FILL_COLOR,
+                              filled: true,
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(width: 0)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(width: 3, color: FILL_COLOR)),
+                              disabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(width: 0)),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 4, horizontal: 8),
                               //border:  OutlineInputBorder(),
-                              labelText: "Selecionar Item",
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<Map<String, dynamic>>(
-                                //iconEnabledColor: accentColor,
                                 iconSize: 32,
+                                icon: Icon(Icons.keyboard_arrow_down_outlined),
                                 isExpanded: true,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black87),
                                 onChanged: (value) {
                                   controller.selectedProduct.value = value!;
                                   controller.checkIfFavorite();
@@ -80,7 +95,14 @@ class FormulaScreen extends StatelessWidget {
                                 items: controller.productsList
                                     .map((e) =>
                                         DropdownMenuItem<Map<String, dynamic>>(
-                                          child: Text(e['descricao']),
+                                          child: Text(
+                                            e['descricao'],
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black87),
+                                          ),
                                           value: e,
                                         ))
                                     .toList(),
@@ -100,14 +122,13 @@ class FormulaScreen extends StatelessWidget {
                               onTap: () {
                                 FavoriteRepository.removeFavorire(
                                     product: Product(
-                                  brand:
-                                      controller.selectedProduct.value['marca'],
-                                  description: controller
-                                      .selectedProduct.value['descricao'],
-                                  imageUrl: controller
-                                      .selectedProduct.value['src_imagem'],
-                                  formula: controller
-                                      .selectedProduct.value['formula'],
+                                  brand: controller.selectedProduct['marca'],
+                                  description:
+                                      controller.selectedProduct['descricao'],
+                                  imageUrl:
+                                      controller.selectedProduct['src_imagem'],
+                                  formula:
+                                      controller.selectedProduct['formula'],
                                 ));
                                 controller.checkIfFavorite();
                               },
@@ -249,20 +270,20 @@ class FormulaScreen extends StatelessWidget {
                     const Text(
                       "Fórmula:",
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: Colors.black54),
+                          color: Colors.black87),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
                     Obx(() {
                       return Text(
-                        controller.selectedProduct.value['formula'],
+                        controller.selectedProduct['formula'],
                         style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Colors.black38),
+                            color: Colors.black54),
                       );
                     })
                   ],
@@ -270,20 +291,24 @@ class FormulaScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Divider(),
+                Container(
+                  height: 3,
+                  margin: EdgeInsets.only(bottom: 10, top: 5),
+                  color: FILL_COLOR,
+                ),
                 Obx(() {
                   return Visibility(
                     visible:
-                        true /*controller.selectedProduct.value['possui_diluicao'] == true */,
+                        controller.selectedProduct.value['diluicao'].length > 1,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
                           "Tipo diluição:",
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: Colors.black54),
+                              color: Colors.black87),
                         ),
                         const SizedBox(
                           height: 5,
@@ -322,173 +347,178 @@ class FormulaScreen extends StatelessWidget {
                                     controller.tipoDiluicao.value == "max")
                           ],
                         ),
+                        Container(
+                          height: 3,
+                          margin: EdgeInsets.only(bottom: 5, top: 20),
+                          color: FILL_COLOR,
+                        ),
                       ],
                     ),
                   );
                 }),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                          height: 20,
-                        ),
-                        const Text(
-                          "Qtd desejada:",
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black54),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        SizedBox(
-                          height: 50,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 40,
-                                child: Obx(() {
-                                  return TextField(
-                                    controller: controller.qtdController.value,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: [controller.maskFormatter],
-                                    onChanged: (text){
-                                      controller.setItensFormula();
-                                    },
-                                  );
-                                }),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              const Text(
-                                "ml",
+                      height: 10,
+                    ),
+                    const Text(
+                      "Qtd desejada:",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 40,
+                            child: Obx(() {
+                              return TextField(
                                 style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black54),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                flex: 60,
-                                child: Row(
-                                  children: [
-                                    InkWell(
-                                      child: Container(
-                                        height: double.infinity,
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.remove,
-                                            color: Colors.white,
-                                            size: 20,
-                                          ),
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        if (controller.getQtdText() == 0) {
-                                          return;
-                                        }
-                                        controller.setQtd(-100);
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    InkWell(
-                                      child: Container(
-                                        height: double.infinity,
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.add,
-                                            color: Colors.white,
-                                            size: 20,
-                                          ),
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        controller.setQtd(100);
-                                      },
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                                    fontSize: 18,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black87),
+                                controller: controller.qtdController.value,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [controller.maskFormatter],
+                                onChanged: (text) {
+                                  controller.setItensFormula();
+                                },
+                              );
+                            }),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Obx(() {
-                          if(controller.isLoading.value){
-                            return Container();
-                          }
-                          return Column(
-                            children: controller.formulaItems.value.itensFormula!
-                                .map((item) => Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 5, horizontal: 10),
-                                      margin: const EdgeInsets.only(bottom: 10),
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 1, color: Colors.black26),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Column(
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
+                            "ml",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black87),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            flex: 60,
+                            child: Row(
+                              children: [
+                                InkWell(
+                                  child: Container(
+                                    height: double.infinity,
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        shape: BoxShape.circle),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.remove,
+                                        color: Colors.white,
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    if (controller.getQtdText() == 0) {
+                                      return;
+                                    }
+                                    controller.setQtd(-25);
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  child: Container(
+                                    height: double.infinity,
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        shape: BoxShape.circle),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    controller.setQtd(25);
+                                  },
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Obx(() {
+                      if (controller.isLoading.value) {
+                        return Container();
+                      }
+                      return Column(
+                        children: controller.formulaItems.value.itensFormula!
+                            .map((item) => Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.only(bottom: 8),
+                                  decoration: BoxDecoration(
+                                      color: FILL_COLOR,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Column(
+                                    children: [
+                                      Row(
                                         children: [
-                                          Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.format_color_fill,
-                                                color: Colors.black54,
-                                                size: 22,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Flexible(
-                                                child: Text(
-                                                  item.description!,
-                                                  style: const TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Colors.black54),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              )
-                                            ],
+                                          const Icon(
+                                            Icons.format_color_fill,
+                                            color: Colors.black87,
+                                            size: 20,
                                           ),
                                           const SizedBox(
-                                            height: 5,
+                                            width: 10,
                                           ),
-                                          Align(
-                                            alignment: Alignment.bottomRight,
+                                          Flexible(
                                             child: Text(
-                                              "${item.value!.toStringAsFixed(2).toString().replaceAll('.', ',')} ml",
+                                              item.description!,
                                               style: const TextStyle(
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  fontSize: 16),
+                                                  color: Colors.black87),
+                                              overflow: TextOverflow.ellipsis,
                                             ),
                                           )
                                         ],
                                       ),
-                                    ))
-                                .toList(),
-                          );
-                        })
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Text(
+                                          "${item.value!.toStringAsFixed(2).toString().replaceAll('.', ',')} gr",
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ))
+                            .toList(),
+                      );
+                    })
                   ],
                 )
               ],

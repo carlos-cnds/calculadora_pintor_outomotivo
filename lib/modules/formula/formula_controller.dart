@@ -15,7 +15,6 @@ class FormulaController extends GetxController {
   }
 
   String brandImgUrl = "";
-  var unidade = "ml".obs;
   var tipoDiluicao = "med".obs;
 
   List<Map<String, dynamic>> productsList = [];
@@ -49,54 +48,47 @@ class FormulaController extends GetxController {
     checkIfFavorite();
   }
 
-  void setDefault(){
-     unidade.value = "ml";
+  void setDefault() {
     tipoDiluicao.value = "med";
     setItensFormula();
   }
 
-  var maskFormatter = MaskTextInputFormatter(
-  mask: '####', 
-  filter: { "#": RegExp(r'[0-9]') }
-);
+  var maskFormatter =
+      MaskTextInputFormatter(mask: '####', filter: {"#": RegExp(r'[0-9]')});
 
   void setItensFormula() async {
     isLoading.value = true;
     await Future.delayed(const Duration(milliseconds: 50));
 
-    if (selectedProduct.value.isEmpty) {
-      isLoading.value = false; 
+    if (selectedProduct.isEmpty) {
+      isLoading.value = false;
       return;
     }
     int qtd = 0;
     if (qtdController.value.text.isNotEmpty) {
       qtd = int.parse(qtdController.value.text);
     }
-    print("recalculando itens");
     formulaItems.value.itensFormula!.clear();
-    selectedProduct.value['items'].forEach((element) {
+    selectedProduct['items'].forEach((element) {
       double value = 0;
       if (qtd == 0) {
         value = 0;
       } else {
-        value = qtd.toDouble() *
-            element['percentual_base_${unidade.value}_d${tipoDiluicao.value}'] /
-            baseCalculo;
+        value = (qtd.toDouble() *
+                element['percentual_base_gm_d${tipoDiluicao.value}'] /
+                baseCalculo) *
+            element['densidade'];
       }
       formulaItems.value.itensFormula!.add(ItemFormula(
-        description: element['descricao'],
-        un: 'un',
-        value: value
-      ));
+          description: element['descricao'], un: 'un', value: value));
     });
-    isLoading.value = false;    
+    isLoading.value = false;
   }
 
   void checkIfFavorite() {
     var favorites = FavoriteRepository.getFavorites();
     var qtd = favorites
-        .where((element) =>
-            element.description == selectedProduct.value['descricao'])
+        .where((element) => element.description == selectedProduct['descricao'])
         .length;
     if (qtd == 0) {
       itemIsFavorite.value = false;
@@ -108,10 +100,10 @@ class FormulaController extends GetxController {
   void setFavorite() {
     FavoriteRepository.insertFavorite(
         product: Product(
-      brand: selectedProduct.value['marca'],
-      description: selectedProduct.value['descricao'],
-      imageUrl: selectedProduct.value['src_imagem'],
-      formula: selectedProduct.value['formula'],
+      brand: selectedProduct['marca'],
+      description: selectedProduct['descricao'],
+      imageUrl: selectedProduct['src_imagem'],
+      formula: selectedProduct['formula'],
     ));
   }
 
@@ -129,7 +121,7 @@ class FormulaController extends GetxController {
       qtdController.value.text = "0";
     } else if (qtdAtual >= 1000) {
       qtdController.value.text = "1000";
-    }else{
+    } else {
       qtdController.value.text = qtdAtual.toString();
     }
     setItensFormula();

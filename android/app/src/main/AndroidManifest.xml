@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.calculadora_pintor_automotivo">
+    package="com.csdnapps.calculadora_pintor_automotivo">
    <application
-        android:label="calculadora_pintor_automotivo"
+        android:label="Calculadora Pintor Automotivo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,4 +1,5 @@
 import 'package:calculadora_pintor_automotivo/models/product.dart';
+import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:calculadora_pintor_automotivo/shared/local_repository/favorires_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,86 +37,89 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(
                             height: 5,
                           ),
-                          Container(
-                            height: 1,
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        width: 1, color: Color(0xffEDEDED)))),
-                          ),
                           Column(
                             children: products
                                 .map((favorite) => InkWell(
-                                  onTap: (){
-                                    Get.toNamed('formula/',
-                                    arguments: {'product': favorite, 'brand' : ""});
-                                  },
-                                  child: Container(
-                                      padding: const EdgeInsets.only(
-                                          top: 5, bottom: 5),
-                                      decoration: const BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  width: 1,
-                                                  color: Color(0xffEDEDED)))),
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundColor:
-                                                const Color(0xffE8E8E8),
-                                            radius: 40,
-                                            child: CircleAvatar(
-                                              radius: 39,
-                                              backgroundImage: AssetImage(
-                                                  favorite.imageUrl!),
+                                      onTap: () {
+                                        Get.toNamed('formula/', arguments: {
+                                          'product': favorite,
+                                          'brand': ""
+                                        });
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(10),
+                                        margin:
+                                            const EdgeInsets.only(bottom: 5),
+                                        decoration: const BoxDecoration(
+                                            color: FILL_COLOR,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: Row(
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundColor:
+                                                  const Color(0xffE8E8E8),
+                                              radius: 30,
+                                              child: CircleAvatar(
+                                                backgroundColor: Colors.white,
+                                                radius: 27,
+                                                backgroundImage: AssetImage(
+                                                    favorite.imageUrl!),
+                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 15,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  favorite.description!,
-                                                  style: const TextStyle(
-                                                      color: Color(0xff5C5C5C),
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(favorite.formula!,
+                                            const SizedBox(
+                                              width: 15,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    favorite.description!,
                                                     style: const TextStyle(
                                                         color:
-                                                            Color(0xff888888),
+                                                            Color(0xff5C5C5C),
                                                         fontSize: 16,
                                                         fontWeight:
-                                                            FontWeight.w600)),
-                                              ],
+                                                            FontWeight.w700),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(favorite.formula!,
+                                                      style: const TextStyle(
+                                                          color:
+                                                              Color(0xff888888),
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w600)),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                                  width: 5,
-                                                ),
-                                          InkWell(
-                                            child: const Icon(Icons.favorite,
-                                                color: Color(0xffcc2200)),
-                                            onTap: () {
-                                              FavoriteRepository.removeFavorire(
-                                                  product: favorite);
-                                            },
-                                          )
-                                        ],
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: InkWell(
+                                                child: const Icon(
+                                                    Icons.favorite,
+                                                    color: Color(0xffcc2200)),
+                                                onTap: () {
+                                                  FavoriteRepository
+                                                      .removeFavorire(
+                                                          product: favorite);
+                                                },
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                ))
+                                    ))
                                 .toList(),
                           ),
                         ],
@@ -150,7 +154,7 @@ class HomeScreen extends StatelessWidget {
                             backgroundColor: Color(0xffE8E8E8),
                             radius: 40,
                             child: CircleAvatar(
-                              radius: 39,
+                              radius: 37,
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(
                                   'assets/images/sherwin_williams.png'),
@@ -166,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                             backgroundColor: Color(0xffE8E8E8),
                             radius: 40,
                             child: CircleAvatar(
-                              radius: 39,
+                              radius: 37,
                               backgroundColor: Colors.white,
                               backgroundImage:
                                   AssetImage('assets/images/sikkens.png'),
@@ -182,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                             backgroundColor: Color(0xffE8E8E8),
                             radius: 40,
                             child: CircleAvatar(
-                              radius: 39,
+                              radius: 37,
                               backgroundColor: Colors.white,
                               backgroundImage:
                                   AssetImage('assets/images/wanda.png'),
@@ -191,6 +195,46 @@ class HomeScreen extends StatelessWidget {
                           onTap: () {
                             Get.toNamed('formula/',
                                 arguments: {'brand': 'Wanda'});
+                          },
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InkWell(
+                          child: const CircleAvatar(
+                            backgroundColor: Color(0xffE8E8E8),
+                            radius: 40,
+                            child: CircleAvatar(
+                              radius: 37,
+                              backgroundColor: Colors.white,
+                              backgroundImage:
+                                  AssetImage('assets/images/anjo.png'),
+                            ),
+                          ),
+                          onTap: () {
+                            Get.toNamed('formula/',
+                                arguments: {'brand': 'Anjo'});
+                          },
+                        ),
+                        InkWell(
+                          child: const CircleAvatar(
+                            backgroundColor: Color(0xffE8E8E8),
+                            radius: 40,
+                            child: CircleAvatar(
+                              radius: 37,
+                              backgroundColor: Colors.white,
+                              backgroundImage:
+                                  AssetImage('assets/images/skylack.png'),
+                            ),
+                          ),
+                          onTap: () {
+                            Get.toNamed('formula/',
+                                arguments: {'brand': 'Skylack'});
                           },
                         )
                       ],
