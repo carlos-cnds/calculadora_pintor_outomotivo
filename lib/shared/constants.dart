@@ -15,6 +15,13 @@ Map<int, Color> colorPrimary = {
 
 int baseCalculo = 100;
 const Color FILL_COLOR = Color(0xffF1F1F1);
+const Color ICON_COLOR = Color(0xffB7B7B7);
+
+// routes names
+const String ROUTE_LOGIN = '/login';
+const String ROUTE_HOME = '/home';
+const String ROUTE_FORMULA = '/formula';
+const String ROUTE_SPLASH = '/splah';
 
 List<Map<String, dynamic>> products = [
   {

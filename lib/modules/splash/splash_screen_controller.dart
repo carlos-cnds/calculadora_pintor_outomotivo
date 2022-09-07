@@ -1,3 +1,4 @@
+import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:get/get.dart';
 
 class SplashScreenController {
@@ -9,6 +10,6 @@ class SplashScreenController {
 
   void checkIfUserIsLogged() async {
     await Future.delayed(Duration(seconds: 3));
-    Get.offNamed('/home');
+    Get.offNamed(ROUTE_LOGIN);
   }
 }
