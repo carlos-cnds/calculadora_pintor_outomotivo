@@ -8,11 +8,11 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Theme.of(context).primaryColor;
     LoginController controller = Get.put(LoginController());
     return Scaffold(
       appBar: AppBar(
         title: Text("Calculadora Pintor Automotivo"),
+        centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +42,6 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Obx(() {
                   return TextField(
-                      keyboardType: TextInputType.emailAddress,
                       obscureText: !controller.passVisible.value,
                       decoration: InputDecoration(
                           label: Text("Senha"),
@@ -69,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextButton(
                       child: Text("Cadastrar"),
-                      onPressed: () {},
+                      onPressed: () => Get.toNamed(ROUTE_REGISTER),
                     )
                   ],
                 ),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:calculadora_pintor_automotivo/modules/formula/formula_screen.dart';
 import 'package:calculadora_pintor_automotivo/modules/home/home_screen.dart';
 import 'package:calculadora_pintor_automotivo/modules/login/login_screen.dart';
+import 'package:calculadora_pintor_automotivo/modules/register/register_step1/register_screen.dart';
 import 'package:calculadora_pintor_automotivo/modules/splash/splash_screen_page.dart';
 import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: ROUTE_HOME, page: () => const HomeScreen()),
         GetPage(name: ROUTE_LOGIN, page: () => const LoginScreen()),
+        GetPage(name: ROUTE_REGISTER, page: () => const RegisterScreen()),
         GetPage(name: ROUTE_SPLASH, page: () => SplashScreenPage()),
         GetPage(
             name: ROUTE_FORMULA,
