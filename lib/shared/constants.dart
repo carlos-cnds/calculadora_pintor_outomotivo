@@ -24,6 +24,11 @@ const String ROUTE_FORMULA = '/formula';
 const String ROUTE_SPLASH = '/splah';
 const String ROUTE_REGISTER = '/register';
 const String ROUTE_RGISTER_CODE = '/register_code';
+const String ROUTE_POLITICS = '/politics';
+
+const String BASE_URL = 'http://pintandocarro.com/pint_car_api';
+const String REQUEST_KEY =
+    '''SMrwp139ByG0uNZS7jMK9RC2YrPlf25qS{gCK7l}o'<u~w3B~t1~d]fs|jEDqD''';
 
 List<Map<String, dynamic>> products = [
   {
