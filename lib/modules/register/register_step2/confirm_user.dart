@@ -181,7 +181,7 @@ class ConfirmUser extends StatelessWidget {
                               "Tudo certo com seu usuário! Você já pode fazer login",
                           isSuccess: true);
                       Get.offAndToNamed(ROUTE_LOGIN,
-                          parameters: {'email': email});
+                          arguments: {'email': email});
                     },
                     child: Text(
                       "Confirmar",

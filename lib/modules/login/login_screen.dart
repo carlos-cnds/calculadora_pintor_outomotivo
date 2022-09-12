@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  final String email;
+  const LoginScreen({Key? key, required this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    LoginController controller = Get.put(LoginController());
+    LoginController controller = Get.put(LoginController(email: email));
     return Scaffold(
       appBar: AppBar(
         title: Text("Calculadora Pintor Automotivo"),
@@ -30,6 +31,7 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               children: [
                 TextField(
+                    controller: controller.emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         label: Text("E-mail"),

@@ -51,7 +51,11 @@ class MyApp extends StatelessWidget {
       initialRoute: ROUTE_SPLASH,
       getPages: [
         GetPage(name: ROUTE_HOME, page: () => const HomeScreen()),
-        GetPage(name: ROUTE_LOGIN, page: () => const LoginScreen()),
+        GetPage(
+            name: ROUTE_LOGIN,
+            page: () => LoginScreen(
+                  email: '',
+                )),
         GetPage(name: ROUTE_REGISTER, page: () => const RegisterScreen()),
         GetPage(name: ROUTE_POLITICS, page: () => const RegisterPolitics()),
         GetPage(
