@@ -7,7 +7,10 @@ import 'package:get/get.dart';
 
 class ConfirmUser extends StatelessWidget {
   final String email;
-  const ConfirmUser({Key? key, required this.email}) : super(key: key);
+  final String routeOnSubmitted;
+  const ConfirmUser(
+      {Key? key, required this.email, required this.routeOnSubmitted})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -177,10 +180,9 @@ class ConfirmUser extends StatelessWidget {
                       }
                       await ModalFeedBack.show(
                           context: context,
-                          text:
-                              "Tudo certo com seu usuário! Você já pode fazer login",
+                          text: "Tudo certo com seu usuário!",
                           isSuccess: true);
-                      Get.offAndToNamed(ROUTE_LOGIN,
+                      Get.offAllNamed(routeOnSubmitted,
                           arguments: {'email': email});
                     },
                     child: Text(

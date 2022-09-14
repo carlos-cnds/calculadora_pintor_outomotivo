@@ -25,6 +25,7 @@ const String ROUTE_SPLASH = '/splah';
 const String ROUTE_REGISTER = '/register';
 const String ROUTE_RGISTER_CODE = '/register_code';
 const String ROUTE_POLITICS = '/politics';
+const String ROUTE_REFRESH_PASSWORD = '/refresh_password';
 
 const String BASE_URL = 'http://pintandocarro.com/pint_car_api';
 const String REQUEST_KEY =

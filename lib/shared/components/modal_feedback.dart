@@ -7,7 +7,7 @@ class ModalFeedBack {
       required String text,
       required bool isSuccess}) async {
     bool isToDelete = false;
-    await showDialog(
+    showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(

@@ -1,4 +1,6 @@
 import 'package:calculadora_pintor_automotivo/modules/login/login_controller.dart';
+import 'package:calculadora_pintor_automotivo/shared/components/modal_feedback.dart';
+import 'package:calculadora_pintor_automotivo/shared/components/progress_indicator_white.dart';
 import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +12,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoginController controller = Get.put(LoginController(email: email));
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Calculadora Pintor Automotivo"),
         centerTitle: true,
@@ -45,6 +49,7 @@ class LoginScreen extends StatelessWidget {
                 Obx(() {
                   return TextField(
                       obscureText: !controller.passVisible.value,
+                      controller: controller.passController,
                       decoration: InputDecoration(
                           label: Text("Senha"),
                           suffixIcon: IconButton(
@@ -66,7 +71,38 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     TextButton(
                       child: Text("Esqueci a senha"),
-                      onPressed: () {},
+                      onPressed: () async {
+                        if (controller.emailController.text.isEmpty) {
+                          ModalFeedBack.show(
+                              context: context,
+                              text: "Informe seu e-mail",
+                              isSuccess: false);
+                          return;
+                        }
+                        showDialog(
+                            context: _scaffoldKey.currentContext!,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text("Resetar Senha"),
+                                content: Text(
+                                    "Enviaremos uma senha temporária para o seu email '${controller.emailController.text}'. Confirma?"),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: Text("Não")),
+                                  TextButton(
+                                      onPressed: () {
+                                        Get.back();
+                                        controller.resetPassword(
+                                            context: context);
+                                      },
+                                      child: Text("Sim"))
+                                ],
+                              );
+                            });
+                      },
                     ),
                     TextButton(
                       child: Text("Cadastrar"),
@@ -80,16 +116,20 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      )),
-                      onPressed: () {},
-                      child: Text(
-                        "Entrar",
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      )),
+                  child: Obx(() {
+                    return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        )),
+                        onPressed: () => controller.login(context),
+                        child: controller.isLoading.value
+                            ? ProgressIndicatorWhite()
+                            : Text(
+                                "Entrar",
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ));
+                  }),
                 )
               ],
             ),

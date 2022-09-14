@@ -98,8 +98,10 @@ class RegisterController extends GetxController {
           isLoading.value = false;
           return;
         }
-        Get.offAndToNamed(ROUTE_RGISTER_CODE,
-            arguments: {'email': emailController.text});
+        Get.offAllNamed(ROUTE_RGISTER_CODE, arguments: {
+          'email': emailController.text,
+          'routeOnSubmitted': ROUTE_LOGIN
+        });
       }
       isLoading.value = false;
     }

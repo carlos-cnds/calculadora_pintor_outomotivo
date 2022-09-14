@@ -1,4 +1,5 @@
 import 'package:calculadora_pintor_automotivo/modules/register/register_step1/register_controller.dart';
+import 'package:calculadora_pintor_automotivo/shared/components/progress_indicator_white.dart';
 import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -165,16 +166,7 @@ class RegisterScreen extends StatelessWidget {
                             controller.sendForm();
                           },
                           child: controller.isLoading.value
-                              ? Center(
-                                  child: SizedBox(
-                                    height: 25,
-                                    width: 25,
-                                    child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.white)),
-                                  ),
-                                )
+                              ? ProgressIndicatorWhite()
                               : Text(
                                   "Cadastrar",
                                   style: TextStyle(fontWeight: FontWeight.w600),
