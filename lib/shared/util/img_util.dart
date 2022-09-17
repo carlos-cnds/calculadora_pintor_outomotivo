@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:calculadora_pintor_automotivo/shared/local_repository/brand_repository.dart';
+
 class ImgUtil {
   static Future<String> imgToBase64(String imagepath) async {
     File imagefile = File(imagepath); //convert Path to File
@@ -20,5 +22,11 @@ class ImgUtil {
 
   static Uint8List dataFromBase64String(String base64String) {
     return base64Decode(base64String);
+  }
+
+  static Uint8List getImageDataFromBrandName(String brandName) {
+    var brands = BrandRepository.getLocal();
+    var brand = brands.where((element) => element!.name! == brandName).first;
+    return base64Decode(brand!.imgBase64!);
   }
 }

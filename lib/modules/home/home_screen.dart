@@ -1,10 +1,12 @@
-import 'package:calculadora_pintor_automotivo/models/product.dart';
+import 'package:calculadora_pintor_automotivo/models/formula_item.dart';
 import 'package:calculadora_pintor_automotivo/modules/home/components/brand_avatar.dart';
 import 'package:calculadora_pintor_automotivo/modules/home/home_controller.dart';
 import 'package:calculadora_pintor_automotivo/shared/components/default_drawer.dart';
 import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:calculadora_pintor_automotivo/shared/local_repository/brand_repository.dart';
 import 'package:calculadora_pintor_automotivo/shared/local_repository/favorires_repository.dart';
+import 'package:calculadora_pintor_automotivo/shared/util/img_util.dart';
+import 'package:calculadora_pintor_automotivo/shared/util_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -75,8 +77,11 @@ class HomeScreen extends StatelessWidget {
                                                 child: CircleAvatar(
                                                   backgroundColor: Colors.white,
                                                   radius: 27,
-                                                  backgroundImage: AssetImage(
-                                                      favorite.imageUrl!),
+                                                  backgroundImage: MemoryImage(
+                                                      ImgUtil
+                                                          .getImageDataFromBrandName(
+                                                              favorite
+                                                                  .brandName!)),
                                                 ),
                                               ),
                                               const SizedBox(

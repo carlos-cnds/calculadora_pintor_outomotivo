@@ -51,6 +51,7 @@ class Product {
     data['description'] = this.description;
     data['formula'] = this.formula;
     data['brand_id'] = this.brandId;
+    data['brand_name'] = this.brandName;
     return data;
   }
 }
@@ -63,6 +64,7 @@ class Itens {
   double? dilutionMin;
   double? dilutionMed;
   double? dilutionMax;
+  double? qtdAux;
 
   Itens(
       {this.id,
@@ -81,6 +83,7 @@ class Itens {
     dilutionMin = double.parse(json['dilution_min'].toString());
     dilutionMed = double.parse(json['dilution_med'].toString());
     dilutionMax = double.parse(json['dilution_max'].toString());
+    qtdAux = 0;
   }
 
   Map<String, dynamic> toJson() {

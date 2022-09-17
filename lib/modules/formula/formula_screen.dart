@@ -1,8 +1,9 @@
-import 'package:calculadora_pintor_automotivo/models/product.dart';
+import 'package:calculadora_pintor_automotivo/models/formula_item.dart';
 import 'package:calculadora_pintor_automotivo/modules/formula/components/seletor_diluicao.dart';
 import 'package:calculadora_pintor_automotivo/modules/formula/formula_controller.dart';
 import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:calculadora_pintor_automotivo/shared/local_repository/favorires_repository.dart';
+import 'package:calculadora_pintor_automotivo/shared/util/img_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,7 @@ class FormulaScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          controller.productsList[0]['marca'],
+          brand!,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -33,7 +34,8 @@ class FormulaScreen extends StatelessWidget {
             child: CircleAvatar(
               radius: 19,
               backgroundColor: Colors.white,
-              backgroundImage: AssetImage(controller.brandImgUrl),
+              backgroundImage:
+                  MemoryImage(ImgUtil.getImageDataFromBrandName(brand!)),
             ),
           ),
         ],
@@ -77,7 +79,7 @@ class FormulaScreen extends StatelessWidget {
                               //border:  OutlineInputBorder(),
                             ),
                             child: DropdownButtonHideUnderline(
-                              child: DropdownButton<Map<String, dynamic>>(
+                              child: DropdownButton<Product>(
                                 iconSize: 32,
                                 icon: Icon(Icons.keyboard_arrow_down_outlined),
                                 isExpanded: true,
@@ -89,14 +91,12 @@ class FormulaScreen extends StatelessWidget {
                                 onChanged: (value) {
                                   controller.selectedProduct.value = value!;
                                   controller.checkIfFavorite();
-                                  controller.setDefault();
                                 },
                                 value: controller.selectedProduct.value,
-                                items: controller.productsList
-                                    .map((e) =>
-                                        DropdownMenuItem<Map<String, dynamic>>(
+                                items: controller.productsOfBrand
+                                    .map((e) => DropdownMenuItem<Product>(
                                           child: Text(
-                                            e['descricao'],
+                                            e.description!,
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 fontFamily: 'Montserrat',
@@ -121,15 +121,7 @@ class FormulaScreen extends StatelessWidget {
                                   color: Color(0xffcc2200)),
                               onTap: () {
                                 FavoriteRepository.removeFavorire(
-                                    product: Product(
-                                  brand: controller.selectedProduct['marca'],
-                                  description:
-                                      controller.selectedProduct['descricao'],
-                                  imageUrl:
-                                      controller.selectedProduct['src_imagem'],
-                                  formula:
-                                      controller.selectedProduct['formula'],
-                                ));
+                                    product: Product());
                                 controller.checkIfFavorite();
                               },
                             );
@@ -279,7 +271,7 @@ class FormulaScreen extends StatelessWidget {
                     ),
                     Obx(() {
                       return Text(
-                        controller.selectedProduct['formula'],
+                        controller.selectedProduct.value.formula!,
                         style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -299,7 +291,8 @@ class FormulaScreen extends StatelessWidget {
                 Obx(() {
                   return Visibility(
                     visible:
-                        controller.selectedProduct.value['diluicao'].length > 1,
+                        controller.itensOfSelectedProducBase[0].dilutionMin! !=
+                            0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -470,7 +463,7 @@ class FormulaScreen extends StatelessWidget {
                         return Container();
                       }
                       return Column(
-                        children: controller.formulaItems.value.itensFormula!
+                        children: controller.itensOfSelectedProducCalc
                             .map((item) => Container(
                                   padding: const EdgeInsets.all(10),
                                   margin: const EdgeInsets.only(bottom: 8),
@@ -507,7 +500,7 @@ class FormulaScreen extends StatelessWidget {
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Text(
-                                          "${item.value!.toStringAsFixed(2).toString().replaceAll('.', ',')} gr",
+                                          "${item.qtdAux!.toStringAsFixed(2).toString().replaceAll('.', ',')} gr",
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 18),

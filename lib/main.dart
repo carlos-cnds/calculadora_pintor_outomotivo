@@ -28,6 +28,7 @@ void main() async {
   await Hive.openBox("favorites");
   await Hive.openBox("user");
   await Hive.openBox("brands");
+  await Hive.openBox("formula");
   runApp(const MyApp());
 }
 

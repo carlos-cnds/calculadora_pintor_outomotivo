@@ -1,4 +1,4 @@
-import 'package:calculadora_pintor_automotivo/models/product.dart';
+import 'package:calculadora_pintor_automotivo/models/formula_item.dart';
 import 'package:calculadora_pintor_automotivo/shared/util_functions.dart';
 import 'package:hive/hive.dart';
 
@@ -23,9 +23,10 @@ class FavoriteRepository {
     item.forEach((k, v) {
       myList.add(Product(
           description: v['description'],
-          brand: v['brand'],
+          brandName: v['brand_name'],
           formula: v['formula'],
-          imageUrl: v['imageUrl']));
+          brandId: v['brand_id'],
+          id: v['id']));
     });
     return myList;
   }

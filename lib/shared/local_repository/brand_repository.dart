@@ -39,7 +39,8 @@ class BrandRepository {
     List<Brand> brands = [];
     brandsBox.forEach((k, v) {
       v.forEach((b) {
-        brands.add(Brand.fromJson(b));
+        var json = jsonEncode(b);
+        brands.add(Brand.fromJson(jsonDecode(json)));
       });
     });
     return brands;
