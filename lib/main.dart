@@ -27,6 +27,7 @@ void main() async {
   Hive.init(appDocDir.path);
   await Hive.openBox("favorites");
   await Hive.openBox("user");
+  await Hive.openBox("brands");
   runApp(const MyApp());
 }
 
