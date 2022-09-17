@@ -1,4 +1,5 @@
 import 'package:calculadora_pintor_automotivo/models/product.dart';
+import 'package:calculadora_pintor_automotivo/shared/components/default_drawer.dart';
 import 'package:calculadora_pintor_automotivo/shared/constants.dart';
 import 'package:calculadora_pintor_automotivo/shared/local_repository/favorires_repository.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text("Calculadora Pintor Automotivo"),
         centerTitle: true,
       ),
+      drawer: DefaultDrawer(),
       body: Container(
         margin: const EdgeInsets.only(top: 10, left: 15, right: 15),
         child: Column(

@@ -26,6 +26,7 @@ void main() async {
   Directory appDocDir = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocDir.path);
   await Hive.openBox("favorites");
+  await Hive.openBox("user");
   runApp(const MyApp());
 }
 
