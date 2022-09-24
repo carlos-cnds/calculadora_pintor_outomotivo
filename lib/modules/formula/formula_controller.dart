@@ -25,6 +25,7 @@ class FormulaController extends GetxController {
   var isLoading = false.obs;
   var qtdController = TextEditingController(text: "100").obs;
   var itemIsFavorite = false.obs;
+  var qtdtotal = 0.0.obs;
 
   void setData() {
     if (product == null) {
@@ -88,6 +89,25 @@ class FormulaController extends GetxController {
             ((dilution * qtd) / 100) * density;
       }
     }
+    updateQtdtotal();
+  }
+
+  void updateQtdtotal() {
+    qtdtotal.value = 0;
+    itensOfSelectedProducCalc.forEach((element) {
+      if (element.selectAux!) {
+        qtdtotal.value += element.qtdAux!;
+      }
+    });
+  }
+
+  updateSelection(Itens item) {
+    itensOfSelectedProducCalc.forEach((element) {
+      if (element.id! == item.id) {
+        element.selectAux = !element.selectAux!;
+      }
+    });
+    updateQtdtotal();
   }
 
   void checkIfFavorite() {

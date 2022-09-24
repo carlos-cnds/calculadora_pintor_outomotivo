@@ -65,6 +65,7 @@ class Itens {
   double? dilutionMed;
   double? dilutionMax;
   double? qtdAux;
+  bool? selectAux;
 
   Itens(
       {this.id,
@@ -84,6 +85,7 @@ class Itens {
     dilutionMed = double.parse(json['dilution_med'].toString());
     dilutionMax = double.parse(json['dilution_max'].toString());
     qtdAux = 0;
+    selectAux = true;
   }
 
   Map<String, dynamic> toJson() {

@@ -97,6 +97,7 @@ class FormulaScreen extends StatelessWidget {
                                   onChanged: (value) {
                                     controller.selectedProduct.value = value!;
                                     controller.checkIfFavorite();
+                                    controller.setItensFormula();
                                   },
                                   value: controller.selectedProduct.value,
                                   items: controller.productsOfBrand
@@ -464,53 +465,103 @@ class FormulaScreen extends StatelessWidget {
                           return Container();
                         }
                         return Column(
-                          children: controller.itensOfSelectedProducCalc
-                              .map((item) => Container(
-                                    padding: const EdgeInsets.all(10),
-                                    margin: const EdgeInsets.only(bottom: 8),
-                                    decoration: BoxDecoration(
-                                        color: FILL_COLOR,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.format_color_fill,
-                                              color: Colors.black87,
-                                              size: 20,
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Flexible(
-                                              child: Text(
-                                                item.description!,
-                                                style: const TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black87),
-                                                overflow: TextOverflow.ellipsis,
+                          children: [
+                            Column(
+                              children: controller.itensOfSelectedProducCalc
+                                  .map((item) => InkWell(
+                                        onTap: () {
+                                          controller.updateSelection(item);
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 8),
+                                          decoration: BoxDecoration(
+                                              border: !item.selectAux!
+                                                  ? null
+                                                  : Border.all(
+                                                      width: 2,
+                                                      color: Theme.of(context)
+                                                          .primaryColor
+                                                          .withOpacity(0.2)),
+                                              color: !item.selectAux!
+                                                  ? FILL_COLOR.withOpacity(0.8)
+                                                  : FILL_COLOR,
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.format_color_fill,
+                                                    color: Colors.black87,
+                                                    size: 20,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Flexible(
+                                                    child: Text(
+                                                      item.description!,
+                                                      style: const TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color:
+                                                              Colors.black87),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                            )
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: Text(
-                                            "${item.qtdAux!.toStringAsFixed(2).toString().replaceAll('.', ',')} gr",
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Align(
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: Text(
+                                                  "${item.qtdAux!.toStringAsFixed(2).toString().replaceAll('.', ',')} gr",
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 18),
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                  ))
-                              .toList(),
+                                        ),
+                                      ))
+                                  .toList(),
+                            ),
+                            Container(
+                              height: 3,
+                              margin: EdgeInsets.only(bottom: 10, top: 5),
+                              color: FILL_COLOR,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Total Selecionado:",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "${controller.qtdtotal.value.toStringAsFixed(2).toString().replaceAll('.', ',')} gr",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
+                          ],
                         );
                       })
                     ],
