@@ -46,4 +46,8 @@ class FormulaRepository {
     });
     return formulasItens;
   }
+
+  static clearLocal() {
+    Hive.box('formula').clear();
+  }
 }

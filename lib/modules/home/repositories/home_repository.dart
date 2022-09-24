@@ -4,13 +4,14 @@ import 'package:calculadora_pintor_automotivo/shared/local_repository/version_re
 
 class HomeRepository {
   static Future updateData() async {
-    var versionLocal = VersionRepository.getLocal();
     var versionServer = await VersionRepository.getVersion();
-
-    if (versionLocal == "" || versionServer != versionLocal) {
-      await BrandRepository.getBrands();
-      await FormulaRepository.getFormulas();
-      VersionRepository.updateLocal(version: versionServer ?? "--");
+    if (versionServer != null) {
+      var versionLocal = VersionRepository.getLocal();
+      if (versionLocal == "" || versionServer != versionLocal) {
+        await BrandRepository.getBrands();
+        await FormulaRepository.getFormulas();
+        VersionRepository.updateLocal(version: versionServer);
+      }
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:calculadora_pintor_automotivo/modules/formula/formula_screen.dar
 import 'package:calculadora_pintor_automotivo/modules/home/home_screen.dart';
 import 'package:calculadora_pintor_automotivo/modules/login/login_screen.dart';
 import 'package:calculadora_pintor_automotivo/modules/login/submodules/refresh_password_screen.dart';
+import 'package:calculadora_pintor_automotivo/modules/profile/profile_screen.dart';
 import 'package:calculadora_pintor_automotivo/modules/register/register_step1/register_politics.dart';
 import 'package:calculadora_pintor_automotivo/modules/register/register_step1/register_screen.dart';
 import 'package:calculadora_pintor_automotivo/modules/register/register_step2/confirm_user.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
                 email: Get.arguments['email'],
                 routeOnSubmitted: Get.arguments['routeOnSubmitted'])),
         GetPage(name: ROUTE_SPLASH, page: () => SplashScreenPage()),
+        GetPage(name: ROUTE_PROFILE, page: () => ProfileScreen()),
         GetPage(
             name: ROUTE_FORMULA,
             page: () => FormulaScreen(

@@ -45,4 +45,8 @@ class BrandRepository {
     });
     return brands;
   }
+
+  static clearLocal() {
+    Hive.box('brands').clear();
+  }
 }

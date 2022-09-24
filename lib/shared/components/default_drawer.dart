@@ -59,6 +59,17 @@ class DefaultDrawer extends StatelessWidget {
                   },
                 ),
                 DefaultAppBarItem(
+                  iconData: Icons.person,
+                  text: "Meus dados",
+                  onTap: () {
+                    if (Get.currentRoute != ROUTE_PROFILE) {
+                      Get.toNamed(ROUTE_PROFILE);
+                    } else {
+                      Get.back();
+                    }
+                  },
+                ),
+                DefaultAppBarItem(
                     iconData: Icons.exit_to_app,
                     text: "Sair",
                     onTap: () {
