@@ -71,6 +71,13 @@ class LoginController extends GetxController {
             'routeOnSubmitted': ROUTE_HOME
           });
           return;
+        } else if (success['err_code'] == '0003') {
+          await ModalFeedBack.show(
+              context: context,
+              text: success['success'].message,
+              isSuccess: false);
+          isLoading.value = false;
+          return;
         } else if (success['err_code'] == '0002') {
           Get.toNamed(ROUTE_REFRESH_PASSWORD,
               arguments: {'email': emailController.text});

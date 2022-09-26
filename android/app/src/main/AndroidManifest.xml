@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.csdnapps.calculadora_pintor_automotivo">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
    <application
         android:label="Calculadora Pintor Automotivo"
         android:name="${applicationName}"
