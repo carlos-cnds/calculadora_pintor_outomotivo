@@ -40,6 +40,18 @@ class FormulaController extends GetxController {
         }
         counter++;
       });
+    } else {
+      var itensOfFormula = formulaList
+          .where((element) => element.product!.brandName == product!.brandName!)
+          .toList();
+      int counter = 0;
+      itensOfFormula.forEach((element) {
+        productsOfBrand.add(element.product!);
+        if (element.product!.id == product!.id) {
+          selectedProduct.value = productsOfBrand[counter];
+        }
+        counter++;
+      });
     }
     setItensFormula();
     checkIfFavorite();

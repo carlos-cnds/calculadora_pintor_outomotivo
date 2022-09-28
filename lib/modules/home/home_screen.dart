@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                                         onTap: () {
                                           Get.toNamed('formula/', arguments: {
                                             'product': favorite,
-                                            'brand': ""
+                                            'brand': favorite.brandName
                                           });
                                         },
                                         child: Container(
