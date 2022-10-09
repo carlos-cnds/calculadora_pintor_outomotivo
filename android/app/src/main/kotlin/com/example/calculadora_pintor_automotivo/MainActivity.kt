@@ -1,4 +1,4 @@
-package com.csdnapps.calculadora_pintor_automotivo
+package com.csdnapps.pintando_carro
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,6 @@
-import 'package:calculadora_pintor_automotivo/models/success.dart';
-import 'package:calculadora_pintor_automotivo/models/user.dart';
-import 'package:calculadora_pintor_automotivo/shared/services/dio_request.dart';
+import 'package:pintando_carro/models/success.dart';
+import 'package:pintando_carro/models/user.dart';
+import 'package:pintando_carro/shared/services/dio_request.dart';
 
 class RegisterRepository {
   static DioRequest _dioRequest = DioRequest();

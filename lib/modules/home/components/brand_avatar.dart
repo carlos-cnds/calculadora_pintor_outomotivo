@@ -1,5 +1,5 @@
-import 'package:calculadora_pintor_automotivo/models/brand.dart';
-import 'package:calculadora_pintor_automotivo/shared/util/img_util.dart';
+import 'package:pintando_carro/models/brand.dart';
+import 'package:pintando_carro/shared/util/img_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

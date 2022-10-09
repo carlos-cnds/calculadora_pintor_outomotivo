@@ -1,5 +1,5 @@
-import 'package:calculadora_pintor_automotivo/models/success.dart';
-import 'package:calculadora_pintor_automotivo/shared/services/dio_request.dart';
+import 'package:pintando_carro/models/success.dart';
+import 'package:pintando_carro/shared/services/dio_request.dart';
 
 class ProfileRepository {
   static DioRequest _dioRequest = DioRequest();

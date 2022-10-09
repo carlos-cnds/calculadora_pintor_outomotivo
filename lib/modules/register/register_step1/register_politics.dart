@@ -7,7 +7,7 @@ class RegisterPolitics extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora Pintor Automotivo"),
+        title: Text("Pintando Carro"),
         centerTitle: true,
       ),
       body: Padding(

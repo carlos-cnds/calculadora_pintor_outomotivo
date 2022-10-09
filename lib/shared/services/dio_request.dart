@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
+import 'package:pintando_carro/shared/constants.dart';
 import 'package:dio/dio.dart';
 
 class DioRequest {

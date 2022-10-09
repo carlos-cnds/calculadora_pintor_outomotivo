@@ -1,6 +1,6 @@
-import 'package:calculadora_pintor_automotivo/shared/components/default_app_bar_item.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
-import 'package:calculadora_pintor_automotivo/shared/local_repository/user_local_repository.dart';
+import 'package:pintando_carro/shared/components/default_app_bar_item.dart';
+import 'package:pintando_carro/shared/constants.dart';
+import 'package:pintando_carro/shared/local_repository/user_local_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

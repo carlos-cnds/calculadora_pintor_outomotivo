@@ -1,5 +1,5 @@
-import 'package:calculadora_pintor_automotivo/models/formula_item.dart';
-import 'package:calculadora_pintor_automotivo/shared/util_functions.dart';
+import 'package:pintando_carro/models/formula_item.dart';
+import 'package:pintando_carro/shared/util_functions.dart';
 import 'package:hive/hive.dart';
 
 class FavoriteRepository {

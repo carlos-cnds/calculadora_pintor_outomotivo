@@ -1,5 +1,7 @@
-import 'package:calculadora_pintor_automotivo/models/formula_item.dart';
-import 'package:calculadora_pintor_automotivo/shared/services/dio_request.dart';
+import 'dart:convert';
+
+import 'package:pintando_carro/models/formula_item.dart';
+import 'package:pintando_carro/shared/services/dio_request.dart';
 import 'package:hive/hive.dart';
 
 class FormulaRepository {
@@ -41,7 +43,8 @@ class FormulaRepository {
     List<FormulaItem> formulasItens = [];
     formulaBox.forEach((k, v) {
       v.forEach((b) {
-        formulasItens.add(FormulaItem.fromJson(b));
+        var json = jsonEncode(b);
+        formulasItens.add(FormulaItem.fromJson(jsonDecode(json)));
       });
     });
     return formulasItens;

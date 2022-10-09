@@ -1,4 +1,4 @@
-import 'package:calculadora_pintor_automotivo/shared/services/dio_request.dart';
+import 'package:pintando_carro/shared/services/dio_request.dart';
 import 'package:hive/hive.dart';
 
 class VersionRepository {

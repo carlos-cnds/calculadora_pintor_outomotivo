@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.csdnapps.calculadora_pintor_automotivo">
+    package="com.csdnapps.pintando_carro">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     
    <application
-        android:label="Calculadora Pintor Automotivo"
+        android:label="Pintando Carro"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

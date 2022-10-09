@@ -1,6 +1,6 @@
-import 'package:calculadora_pintor_automotivo/modules/register/register_step1/register_controller.dart';
-import 'package:calculadora_pintor_automotivo/shared/components/progress_indicator_white.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
+import 'package:pintando_carro/modules/register/register_step1/register_controller.dart';
+import 'package:pintando_carro/shared/components/progress_indicator_white.dart';
+import 'package:pintando_carro/shared/constants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class RegisterScreen extends StatelessWidget {
         Get.put(RegisterController(context: context));
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora Pintor Automotivo"),
+        title: Text("Pintando Carro"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

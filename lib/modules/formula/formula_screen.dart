@@ -1,10 +1,10 @@
-import 'package:calculadora_pintor_automotivo/models/formula_item.dart';
-import 'package:calculadora_pintor_automotivo/modules/formula/components/empt_brand_data.dart';
-import 'package:calculadora_pintor_automotivo/modules/formula/components/seletor_diluicao.dart';
-import 'package:calculadora_pintor_automotivo/modules/formula/formula_controller.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
-import 'package:calculadora_pintor_automotivo/shared/local_repository/favorires_repository.dart';
-import 'package:calculadora_pintor_automotivo/shared/util/img_util.dart';
+import 'package:pintando_carro/models/formula_item.dart';
+import 'package:pintando_carro/modules/formula/components/empt_brand_data.dart';
+import 'package:pintando_carro/modules/formula/components/seletor_diluicao.dart';
+import 'package:pintando_carro/modules/formula/formula_controller.dart';
+import 'package:pintando_carro/shared/constants.dart';
+import 'package:pintando_carro/shared/local_repository/favorires_repository.dart';
+import 'package:pintando_carro/shared/util/img_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:calculadora_pintor_automotivo/models/user.dart';
+import 'package:pintando_carro/models/user.dart';
 import 'package:hive/hive.dart';
 
 class UserLocalRepository {

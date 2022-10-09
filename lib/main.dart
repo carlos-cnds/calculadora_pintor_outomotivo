@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:calculadora_pintor_automotivo/modules/formula/formula_screen.dart';
-import 'package:calculadora_pintor_automotivo/modules/home/home_screen.dart';
-import 'package:calculadora_pintor_automotivo/modules/login/login_screen.dart';
-import 'package:calculadora_pintor_automotivo/modules/login/submodules/refresh_password_screen.dart';
-import 'package:calculadora_pintor_automotivo/modules/profile/profile_screen.dart';
-import 'package:calculadora_pintor_automotivo/modules/register/register_step1/register_politics.dart';
-import 'package:calculadora_pintor_automotivo/modules/register/register_step1/register_screen.dart';
-import 'package:calculadora_pintor_automotivo/modules/register/register_step2/confirm_user.dart';
-import 'package:calculadora_pintor_automotivo/modules/splash/splash_screen_page.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
+import 'package:pintando_carro/modules/formula/formula_screen.dart';
+import 'package:pintando_carro/modules/home/home_screen.dart';
+import 'package:pintando_carro/modules/login/login_screen.dart';
+import 'package:pintando_carro/modules/login/submodules/refresh_password_screen.dart';
+import 'package:pintando_carro/modules/profile/profile_screen.dart';
+import 'package:pintando_carro/modules/register/register_step1/register_politics.dart';
+import 'package:pintando_carro/modules/register/register_step1/register_screen.dart';
+import 'package:pintando_carro/modules/register/register_step2/confirm_user.dart';
+import 'package:pintando_carro/modules/splash/splash_screen_page.dart';
+import 'package:pintando_carro/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Calculadora Pintor Automotivo',
+      title: 'Pintando Carro',
       theme: ThemeData(
           fontFamily: 'Montserrat',
           primarySwatch: MaterialColor(0xff111c80, colorPrimary),

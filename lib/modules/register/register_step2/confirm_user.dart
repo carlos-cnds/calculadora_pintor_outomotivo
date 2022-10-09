@@ -1,7 +1,6 @@
-import 'package:calculadora_pintor_automotivo/modules/register/register_step2/confirm_user_controller.dart';
-import 'package:calculadora_pintor_automotivo/modules/register/repositories/register_repository.dart';
-import 'package:calculadora_pintor_automotivo/shared/components/modal_feedback.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
+import 'package:pintando_carro/modules/register/register_step2/confirm_user_controller.dart';
+import 'package:pintando_carro/modules/register/repositories/register_repository.dart';
+import 'package:pintando_carro/shared/components/modal_feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +16,7 @@ class ConfirmUser extends StatelessWidget {
     ConfirmUserController controller = Get.put(ConfirmUserController());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora Pintor Automotivo"),
+        title: Text("Pintando Carro"),
         centerTitle: true,
       ),
       body: Obx(() {

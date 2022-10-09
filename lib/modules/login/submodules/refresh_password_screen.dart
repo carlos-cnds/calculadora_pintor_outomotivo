@@ -1,6 +1,6 @@
-import 'package:calculadora_pintor_automotivo/modules/login/submodules/refresh_password_controller.dart';
-import 'package:calculadora_pintor_automotivo/shared/components/progress_indicator_white.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
+import 'package:pintando_carro/modules/login/submodules/refresh_password_controller.dart';
+import 'package:pintando_carro/shared/components/progress_indicator_white.dart';
+import 'package:pintando_carro/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,7 @@ class RefreshPasswordScreen extends StatelessWidget {
     RefreshPasswordController controller = Get.put(RefreshPasswordController());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora Pintor Automotivo"),
+        title: Text("Pintando Carro"),
         centerTitle: true,
       ),
       body: Column(

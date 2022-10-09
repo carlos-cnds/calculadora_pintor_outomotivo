@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:calculadora_pintor_automotivo/shared/local_repository/brand_repository.dart';
+import 'package:pintando_carro/shared/local_repository/brand_repository.dart';
 
 class ImgUtil {
   static Future<String> imgToBase64(String imagepath) async {

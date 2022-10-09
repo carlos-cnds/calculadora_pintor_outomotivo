@@ -1,4 +1,4 @@
-import 'package:calculadora_pintor_automotivo/modules/splash/splash_screen_controller.dart';
+import 'package:pintando_carro/modules/splash/splash_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

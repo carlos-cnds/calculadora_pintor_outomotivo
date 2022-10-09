@@ -1,6 +1,6 @@
-import 'package:calculadora_pintor_automotivo/modules/register/repositories/register_repository.dart';
-import 'package:calculadora_pintor_automotivo/shared/components/modal_feedback.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
+import 'package:pintando_carro/modules/register/repositories/register_repository.dart';
+import 'package:pintando_carro/shared/components/modal_feedback.dart';
+import 'package:pintando_carro/shared/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';

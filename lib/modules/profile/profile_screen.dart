@@ -1,7 +1,7 @@
-import 'package:calculadora_pintor_automotivo/modules/profile/profile_controller.dart';
-import 'package:calculadora_pintor_automotivo/shared/components/modal_delete.dart';
-import 'package:calculadora_pintor_automotivo/shared/components/progress_indicator_white.dart';
-import 'package:calculadora_pintor_automotivo/shared/constants.dart';
+import 'package:pintando_carro/modules/profile/profile_controller.dart';
+import 'package:pintando_carro/shared/components/modal_delete.dart';
+import 'package:pintando_carro/shared/components/progress_indicator_white.dart';
+import 'package:pintando_carro/shared/constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
     ProfileController controller = Get.put(ProfileController(context: context));
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora Pintor Automotivo"),
+        title: Text("Pintando Carro"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
