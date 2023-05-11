@@ -1,3 +1,6 @@
+# rodar n versão 2.20.3 do flutter
+
+
 # calculadora_pintor_automotivo
 
 A new Flutter project.
