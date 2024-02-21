@@ -7,7 +7,8 @@ class HomeRepository {
     var versionServer = await VersionRepository.getVersion();
     if (versionServer != null) {
       var versionLocal = VersionRepository.getLocal();
-      if (versionLocal == "" || versionServer != versionLocal) {
+      var brands = BrandRepository.getLocal();
+      if (versionLocal == "" || versionServer != versionLocal || brands.isEmpty) {
         await BrandRepository.getBrands();
         await FormulaRepository.getFormulas();
         VersionRepository.updateLocal(version: versionServer);

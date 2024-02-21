@@ -6,7 +6,7 @@ class Brand {
   Brand({this.id, this.name, this.imgBase64});
 
   Brand.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'].toString();
     name = json['name'];
     imgBase64 = json['img_base64'];
   }

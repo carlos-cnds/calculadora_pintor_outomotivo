@@ -38,10 +38,10 @@ class Product {
       {this.id, this.description, this.formula, this.brandId, this.brandName});
 
   Product.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'].toString();
     description = json['description'];
     formula = json['formula'];
-    brandId = json['brand_id'];
+    brandId = json['brand_id'].toString();
     brandName = json['brand_name'];
   }
 
@@ -77,8 +77,8 @@ class Itens {
       this.dilutionMax});
 
   Itens.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    productId = json['product_id'];
+    id = json['id'].toString();
+    productId = json['product_id'].toString();
     description = json['description'];
     density = double.parse(json['density'].toString());
     dilutionMin = double.parse(json['dilution_min'].toString());

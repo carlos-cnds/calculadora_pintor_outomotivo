@@ -11,6 +11,7 @@ class BrandRepository {
     try {
       var response = await _dioRequest.dio.get('/brand/get');
 
+      print(response);
       List<Brand> brands = [];
 
       response.data.forEach((brand) {

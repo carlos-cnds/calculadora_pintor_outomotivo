@@ -6,7 +6,7 @@ class Success {
 
   Success.fromJson(Map<String, dynamic> json) {
     success = json['success'];
-    message = json['message'];
+    message = json['message'].toString();
   }
 
   Map<String, dynamic> toJson() {

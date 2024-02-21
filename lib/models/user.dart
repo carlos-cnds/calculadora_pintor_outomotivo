@@ -23,11 +23,11 @@ class User {
       this.lastAccess});
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'].toString();
     name = json['name'];
     email = json['email'];
-    active = json['active'];
-    verified = json['verified'];
+    active = json['active'].toString();
+    verified = json['verified'].toString();
     verificationCode = json['verification_code'];
     hash = json['hash'];
     phoneNumber = json['phone_number'];
